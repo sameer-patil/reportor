@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+    Site Reporter Form
+    Collect user reports about website accessibility issues, likely for Tor Browser users
+    Last Updated: 08/09/2025
+    Author: Cameron Cartier
+-->
+<html dir="ltr" lang="en">
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="skin.css" rel="stylesheet"/>
+    <title>Site Reporter</title>
+</head>
+
+<body>
+<form id="Form"><br>
+    <script src="js/saveOpts.js"></script>
+    <div class="url">
+        <label class="url headingscolor"> <strong> URL being reported: </strong><br>
+            <span id="headingscolor"></span></label>
+        <label><span id="url" contenteditable="true"></span></label>
+        <p>
+            <script src="js/gatherdata.js" type="module"></script>
+        </p>
+    </div>
+
+    <div class="cont">
+        <div class="ipmenu">
+        <div class="exit headingscolor">
+            <label for="exit" id="exitnode" name="exitnode"><strong>Exit node:</strong></label>&nbsp;
+            <input id="exit" type="text">
+        </div>
+        <div class="dropdown-content" id="myDropdown">
+            <script src="js/ipCompleteTrie.js"></script>
+        </div>
+        </div>
+        <div class="help">
+            <a href="docs/Getting_Exit_Node.html"
+                    target="_blank" title="Click here for help finding exit node">
+                <img class="icon" src="./images/howto.png"/>
+            </a>
+        </div>
+    </div>
+    <br>
+    <div class="cont">
+        <div class="leftalign security-level" id="secright">
+            <label class="security-level headingscolor"><strong>Browser security level:</strong></label><br>
+            <input id="standard" name="cc" type="radio" value="Standard">
+            <label for="standard">Standard</label>&nbsp;&nbsp;
+            <input id="safer" name="cc" type="radio" value="Safer">
+            <label for="safer">Safer</label>&nbsp;&nbsp;
+            <input id="safest" name="cc" type="radio" value="Safest">
+            <label for="safest">Safest</label>&nbsp;&nbsp;
+            <input id="custom" name="cc" type="radio" value="Custom">
+            <label for="custom">Custom</label>
+        </div>
+        <div class="help">
+            <a href="docs/find_security_setting.html"
+               target="_blank"
+               title="Click here for help finding security setting">
+                <img class="icon" src="./images/howto.png"/></a>
+        </div>
+    </div>
+    <br>
+
+    <div class="graphicleft">
+    <div class="leftalign">
+        <label class="headingscolor"><strong>What problem did you experience? </strong></label><br>
+        <div class="pbox leftalign">
+            <input id="box0" name="problem" type="checkbox" value="blocked_or_inaccessible">
+            <label class="abox" for="box0">Resource is inaccessible</label><br>
+        </div>
+        <div class="pbox leftalign">
+            <input id="box1" name="problem" type="checkbox" value="content_broken">
+            <label class="abox" for="box1">Content does not display correctly</label><br>
+        </div>
+        <div class="pbox leftalign">
+            <input id="box3" name="problem" type="checkbox" value="CAPTCHAs">
+            <label class="abox" for="box3">Broken, excessive, or infinite CAPTCHAs</label><br>
+        </div>
+        <div class="pbox leftalign">
+            <input id="box2" name="problem" type="checkbox" value="server_error">
+            <label class="abox" for="box2">Server-side error message</label>
+        </div>
+        <div class="pbox leftalign">
+            <input id="box4" name="problem" type="checkbox" value="unusual_traffic_detected">
+            <label class="abox" for="box4">"Unusual traffic detected from your network" message</label><br>
+        </div>
+        <div class="pbox leftalign">
+            <input id="box5" name="problem" type="checkbox" value="other">
+            <label class="abox" for="box5">Other</label>
+        </div>
+    </div>
+    </div>
+
+    <div class="leftalign commentbox">
+        <br>
+        <label class="commentbox headingscolor" for="comments"><strong>Additional detail:</strong></label><br>
+        <textarea cols="55" id="comments" name="comments"
+                  placeholder="Please add any information you are willing to provide about what was happening when you encountered the issue."
+                  rows="3"></textarea>
+    </div>
+
+    <div class="Submit">
+        <script src="js/sendToServer.js"></script>
+        <button class="btn" id="cancel" name="button" type="reset">Cancel</button>
+        <button class="btn" id="btn" name="button" onclick="location.href=thankyou.html" type="submit">Send Report</button>
+    </div>
+</form>
+
+<div class="inline-block"><a href="docs/README.html" target="_blank"> <img id="banner"
+                                                                              src="./images/Banner.png"> </a></div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "ReporTor",
+  "version": "1.4",
+  "description": "Help out researchers and the Tor project by reporting malfunctioning web resources",
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["./js/gatherdata.js", "./js/saveOpts.js", "./js/sleepFive.js", "./js/ipCompleteTrie.js"]
+    }
+  ],
+  "background": {
+    "scripts": ["./js/sendToServer.js"]
+  },
+  "permissions": ["tabs", "storage", "<all_urls>", "webRequest"],
+
+  "browser_action": {
+    "default_icon": "./images/icon.png",
+    "default_title": "Reportor",
+    "default_popup": "view.html"
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "cartier.hannah@utah.edu"
+    }
+  }
+}

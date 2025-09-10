@@ -1,0 +1,194 @@
+:root {
+  --tor-dark: #333A41;
+  --tor-light: #F8F9FA;
+  --tor-green: #68B030;
+  --tor-purple: #7D4698;
+  --text-color: #f8f9e7;
+}
+
+*{
+  font-family: 'Source Sans Pro', sans-serif;
+  text-align: center;
+}
+
+body {
+  background-color: var(--tor-dark);
+  color: var(--text-color);
+  padding-right: 20px;
+  padding-bottom: 0px;
+  padding-left: 20px;
+  max-width: 600px;
+}
+
+.icon {
+  display: block;
+  max-height: 20px;
+  opacity: 80%;
+}
+
+.Submit {
+  display: flex;
+  /*justify-content: space-between;*/
+  justify-content: space-evenly;
+  padding-top: 12px;
+  padding-bottom: 8px;
+}
+
+.graphicleft {
+  display: flex;
+}
+.btn {
+  display: inline-block;
+  border-radius: 4px;
+  border: solid var(--tor-green);
+  font-size: 20px;
+  font-weight: 600;
+  padding: 8px 8px;
+  color: var(--text-color);
+  background-color: var(--tor-green);
+  border-width: thin;
+  width: 40%;
+}
+.btn:hover {
+  background-color: #86cf4c;
+  cursor: pointer;
+}
+
+.btn:active {
+  background-color: #86cf4c;
+}
+#cancel {
+  background-color: var(--tor-dark);
+  /*color: var(--tor-green);*/
+}
+#cancel:hover {
+  background-color: #515962;
+}
+.url {
+  text-align: left;
+  max-width: 400px;
+  text-overflow: ellipsis;
+}
+
+.ipmenu {
+  display: block;
+}
+
+.exit {
+  text-align: left;
+  color: var(--tor-green);
+  padding-right: 30px;
+}
+
+.leftalign {
+  text-align: left;
+}
+
+#comments {
+  background-color: var(--tor-dark);
+  color: white;
+  text-align: left;
+}
+
+.headingscolor {
+  color: var(--tor-green);
+  font-weight: 600;
+  font-size: 18px;
+}
+
+
+#outerbox {
+  /*display: flex;*/
+  align-content: center;
+  justify-content: space-between;
+  padding-right: 30px;
+}
+
+.thankyou {
+  color: white;
+}
+#get-connected {
+  min-height: 200%;
+}
+
+.div {
+  width: auto;
+  display: inline-block;
+  visibility: hidden;
+  position: fixed;
+  overflow: auto;
+  font-size: 25px;
+}
+
+.cont{
+  display: flex;
+  justify-content: space-between;
+  margin-right: 10%;
+}
+
+.dropdown-content {
+  position: absolute;
+  display: inline-block;
+  left: 27%;
+  background-color: var(--tor-dark);
+  min-width: 143px;
+  max-height: 400px;
+  overflow: scroll;
+  border: 1px solid var(--tor-green);
+}
+
+.dropdown-content a {
+  color: var(--text-color);
+  text-align: left;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--tor-green);
+  cursor: pointer;
+}
+.pbox {
+  padding-top: 4px;
+
+  /*padding-bottom: 10px;*/
+}
+
+#circumvent {
+  max-height: 200px;
+  min-height: 200px;
+  opacity: 16%;
+  position: absolute;
+  margin-bottom: 10px;
+
+  float: right;
+  justify-content: right;
+  margin-left: 49%;
+  padding-top: 10px;
+  margin-right: 32px;
+
+}
+#banner  {
+  display: inline-block;
+  padding-top: 0px;
+  max-height: 50px;
+}
+
+#icon {
+  display: inline-block;
+  alignment: left;
+  align-content: flex-end;
+  max-height: 50px;
+}
+
+#exit{
+  background-color: var(--tor-dark);
+  color: var(--tor-light);
+  font-size: 14px;
+}
+
+#url {
+  color: #CAE4F1;
+  overflow-wrap: break-word;
+}
