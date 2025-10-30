@@ -141,15 +141,16 @@ Step 3: Download and Build the ReporTor Server-side Container
 1. Download the provided ReporTor Server-side container  
 2. Extract the ZIP file to a folder on your computer (remember this location).
 3. Open a new terminal window and locate the just extracted folder.
-4. Run the following command to build an run the container:
+4. If you're using Docker Desktop, make sure it's running.
+5. Run the following command to build and run the container:
 sudo docker-compose up --build
-5. Wait for all services to launch.
+6. Wait for all services to launch.
 
 Step 4: Download ReporTor Plugin and setup Onion Address
 1. Open a new terminal window and locate the extracted directory of ReporTor Server-side container.
 2. Run the following commands to download the ReporTor plugin and automatically configure the plugin with the newly created onion address:
 sudo chmod +x update_plugin.py
-sudo ./update_plugin.py
+sudo python update_plugin.py
 sudo chmod -R 777 reportor/
 
 Step 5: Install the ReporTor Plugin
@@ -214,11 +215,23 @@ Test 2
 2. Complete form displayed by ReporTor plugin.
 3. Submit Report.
 4. Open new terminal window.
-5. Run the following commands:
+5. Run one of the following commands options:
+Option 1
 sudo docker exec -it reportor_mongo mongosh
 use broken_sites
 show collections
 db.reports.find().pretty()
+
+Option 2
+docker exec -it reportor_mongo mongosh --eval "use('broken_sites'); printjson(db.reports.find().toArray())"
+    
+Option 3    
+docker exec -it reportor_mongo mongosh 
+and then one-by-one type
+use broken_sites
+show collections
+db.reports.find().pretty()
+
 
 Expected Output:
 You should see a json object of the report that you just submitted. 
@@ -286,8 +299,19 @@ https://walmart.com
 - Click the "Send Report" button.
 
 7. Open new terminal window.
-8. Run the following commands:
+5. Run one of the following commands options:
+Option 1
 sudo docker exec -it reportor_mongo mongosh
+use broken_sites
+show collections
+db.reports.find().pretty()
+
+Option 2
+docker exec -it reportor_mongo mongosh --eval "use('broken_sites'); printjson(db.reports.find().toArray())"
+    
+Option 3    
+docker exec -it reportor_mongo mongosh 
+and then one-by-one type
 use broken_sites
 show collections
 db.reports.find().pretty()
