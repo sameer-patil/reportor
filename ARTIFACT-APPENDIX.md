@@ -10,18 +10,19 @@ Requested Badge(s):
 ## Description (Required for all badges)
 
 This repository contains the source code for the ReporTor plugin. If you use this work in your research, please cite our paper as follows:
-
+'''
 @article{micallef2026reportor,
   title = {ReporTor: Facilitating User Reporting of Issues Encountered in Naturalistic Web Browsing via Tor Browser},
   author = {Micallef, Nicholas and Cartier, Cameron and Gallagher, Kevin and Zagal, Lucas and Patil, Sameer},
   journal = {Proceedings on Privacy Enhancing Technologies},
-  volume = {2026}, 
+  volume = {2026},
   issue = {1},
   year ={2026},
-  series = {PoPETS '26}, 
+  series = {PoPETS '26},
   doi = {<to add>}
   url= {<to add>}
 }
+'''
 
 ReporTor is a plugin for Tor Browser that enables voluntary, anonymous end-user reporting of issues encountered during web browsing. ReporTor provides automatic URL capture (with query parameters stripped for privacy), predefined issue categories, open-ended text input for additional detail, and manual entry fields for exit node and Tor Browser security level. All reports are transmitted over the Tor network to a database hosted via an onion service. ReporTor addresses the lack of traditional telemetry and analytics collection due to the privacy constraints in Tor Browser and demonstrates that user-driven issue reporting can serve as a viable privacy-preserving alternative. The artifact is the plugin used in our research to collect real-world browsing issues during a month-long naturalistic study. The successful deployment and use of ReporTor validates that privacy-preserving voluntary reporting can yield actionable insight about the user experience. ReporTor is a deployable practical solution that could be integrated within Tor Browser to surface user-encountered challenges and improve the user experience of everyday web browsing.
 
@@ -102,11 +103,11 @@ sudo usermod -aG docker $USER
 8. Verify installation:
 docker run hello-world  
 
-If you see the "Hello from Docker!"" message, it is working. 
+If you see the "Hello from Docker!"" message, it is working.
 
 B. Windows
 
-Use Docker Desktop for Windows. 
+Use Docker Desktop for Windows.
 1. Ensure your Windows edition supports Docker Desktop (Windows 10/11 with WSL 2 or Pro/Enterprise with Hyper-V).
 
 2. Download Docker Desktop from the official Docker site (https://docs.docker.com/desktop/setup/install/windows-install/).
@@ -123,7 +124,7 @@ docker compose version
 docker run hello-world  
 
 C. macOS
-Use Docker Desktop for macOS. 
+Use Docker Desktop for macOS.
 1. Download Docker Desktop for your architecture (https://docs.docker.com/desktop/setup/install/mac-install/).
 
 2. Open the .dmg file and drag the Docker icon into Applications.
@@ -137,8 +138,8 @@ docker compose version
 5. Test:
 docker run hello-world  
 
-Step 3: Download and Build the ReporTor Server-side Container
-1. Download the provided ReporTor Server-side container  
+Step 3: Download and Build the ReporTor local test server
+1. Download the ReporTor from https://github.com/sameer-patil/reportor  
 2. Extract the ZIP file to a folder on your computer (remember this location).
 3. Open a new terminal window and locate the just extracted folder.
 4. If you're using Docker Desktop, make sure it's running.
@@ -146,9 +147,9 @@ Step 3: Download and Build the ReporTor Server-side Container
 sudo docker-compose up --build
 6. Wait for all services to launch.
 
-Step 4: Download ReporTor Plugin and setup Onion Address
-1. Open a new terminal window and locate the extracted directory of ReporTor Server-side container.
-2. Run the following commands to download the ReporTor plugin and automatically configure the plugin with the newly created onion address:
+Step 4: Setup Onion Address
+1. Open a new terminal window and locate the extracted directory of the ReporTor local test server.
+2. Run the following commands to automatically configure the plugin with the newly created onion address:
 sudo chmod +x update_plugin.py
 sudo python update_plugin.py
 sudo chmod -R 777 reportor/
@@ -160,7 +161,7 @@ Step 5: Install the ReporTor Plugin
 3. Load the ReporTor extension:
 - Click "This Tor Browser" in the left sidebar.
 - Click the "Load Temporary Add-on..." button.
-- Navigate to the folder where you extracted the ReporTor Server-side container, which should contain the the ReporTor plugin downloaded in the previous step.
+- Navigate to the folder where you extracted ReporTor, which should contain the plugin.
 - Select the manifest.json file and click "Open."
 4. Configure the extension permissions:
 - Click the application menu in the far right of the toolbar.
@@ -169,7 +170,7 @@ Step 5: Install the ReporTor Plugin
 - Find ReporTor in the list and click on it.
 - Enable the extension by toggling the switch in the top right to "ON."
 - Under "Run in Private Windows", click the "Allow" button.
-- At this stage, you may see a one-time permission prompt. It will request the extension's approval to `download files...'. Please grant this permission to proceed.
+- At this stage, you may see a one-time permission prompt. It will request the extension's approval to "download files...". Please grant this permission to proceed.
 5. Pin the extension for easy access:
 - Look for the puzzle piece icon in the browser toolbar (top-right corner).
 - Click the puzzle piece icon to see all extensions.
@@ -179,7 +180,7 @@ Step 5: Install the ReporTor Plugin
 
 ### Accessibility (Required for all badges)
 
-Download reporTor Plugin using the following github repository:
+Download ReporTor Plugin using the following github repository:
 https://github.com/sameer-patil/reportor.git
 
 ### Set up the environment (Required for Functional and Reproduced badges)
@@ -224,9 +225,9 @@ db.reports.find().pretty()
 
 Option 2
 docker exec -it reportor_mongo mongosh --eval "use('broken_sites'); printjson(db.reports.find().toArray())"
-    
+
 Option 3    
-docker exec -it reportor_mongo mongosh 
+docker exec -it reportor_mongo mongosh
 and then one-by-one type
 use broken_sites
 show collections
@@ -234,7 +235,7 @@ db.reports.find().pretty()
 
 
 Expected Output:
-You should see a json object of the report that you just submitted. 
+You should see a json object of the report that you just submitted.
 
 ## Artifact Evaluation (Required for Functional and Reproduced badges)
 
@@ -250,7 +251,7 @@ Experiments
 
 Experiment 1: Testing Issues Reporting through ReporTor
 
-Time: 30 minutes. 
+Time: 30 minutes.
 Storage: <1MB (for temporary report data).
 
 This experiment reproduces the main findings about successful reporting of issues encountered when browsing with Tor Browser. You will test five representative websites and submit reports for those that exhibit problems.
@@ -308,9 +309,9 @@ db.reports.find().pretty()
 
 Option 2
 docker exec -it reportor_mongo mongosh --eval "use('broken_sites'); printjson(db.reports.find().toArray())"
-    
+
 Option 3    
-docker exec -it reportor_mongo mongosh 
+docker exec -it reportor_mongo mongosh
 and then one-by-one type
 use broken_sites
 show collections
@@ -321,7 +322,7 @@ Expected Results:
 - Airbnb, ScienceDirect, and Walmart should display various error messages or access restrictions.
 - You should successfully submit 3 error reports through the ReporTor interface.
 - All report submissions should take less than 30 seconds once the error is encountered.
-- In the terminal window, you should see json objects of the reports that you just submitted. 
+- In the terminal window, you should see json objects of the reports that you just submitted.
 
 These results validate that ReporTor enables users to submit issue reports as described in our paper. In addition, the reports are transmited via onion address to a flask server that stores them in a database as described in the paper.
 

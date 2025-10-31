@@ -5,7 +5,7 @@ import sys
 
 # Resolve base directory dynamically (where this script lives)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-PLUGIN_DIR = os.path.join(BASE_DIR, "reportor")
+PLUGIN_DIR = os.path.join(BASE_DIR, "..", "plugin")
 ONION_FILE = os.path.join(BASE_DIR, "onion_address.txt")
 SENDTO_FILE = os.path.join(PLUGIN_DIR, "js", "sendToServer.js")
 
@@ -23,20 +23,8 @@ if not onion_address:
 
 print(f"[INFO] Using onion address: {onion_address}")
 
-# 2. Clone the plugin if it does not exist
-if not os.path.exists(PLUGIN_DIR):
-    print(f"[INFO] Cloning plugin repository into {PLUGIN_DIR}...")
-    try:
-        subprocess.check_call([
-            "git", "clone", "https://github.com/sameer-patil/reportor.git", PLUGIN_DIR
-        ])
-    except subprocess.CalledProcessError as e:
-        print(f"[ERROR] Failed to clone repository: {e}")
-        sys.exit(1)
-else:
-    print(f"[INFO] Plugin already exists at {PLUGIN_DIR}, skipping clone.")
 
-# 3. Update sendToServer.js
+# 2. Update sendToServer.js
 if not os.path.exists(SENDTO_FILE):
     print(f"[ERROR] sendToServer.js not found at {SENDTO_FILE}")
     sys.exit(1)
