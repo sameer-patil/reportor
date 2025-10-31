@@ -10,7 +10,7 @@ Requested Badge(s):
 ## Description (Required for all badges)
 
 This repository contains the source code for the ReporTor plugin. If you use this work in your research, please cite our paper as follows:
-'''
+```
 @article{micallef2026reportor,
   title = {ReporTor: Facilitating User Reporting of Issues Encountered in Naturalistic Web Browsing via Tor Browser},
   author = {Micallef, Nicholas and Cartier, Cameron and Gallagher, Kevin and Zagal, Lucas and Patil, Sameer},
@@ -22,7 +22,7 @@ This repository contains the source code for the ReporTor plugin. If you use thi
   doi = {<to add>}
   url= {<to add>}
 }
-'''
+```
 
 ReporTor is a plugin for Tor Browser that enables voluntary, anonymous end-user reporting of issues encountered during web browsing. ReporTor provides automatic URL capture (with query parameters stripped for privacy), predefined issue categories, open-ended text input for additional detail, and manual entry fields for exit node and Tor Browser security level. All reports are transmitted over the Tor network to a database hosted via an onion service. ReporTor addresses the lack of traditional telemetry and analytics collection due to the privacy constraints in Tor Browser and demonstrates that user-driven issue reporting can serve as a viable privacy-preserving alternative. The artifact is the plugin used in our research to collect real-world browsing issues during a month-long naturalistic study. The successful deployment and use of ReporTor validates that privacy-preserving voluntary reporting can yield actionable insight about the user experience. ReporTor is a deployable practical solution that could be integrated within Tor Browser to surface user-encountered challenges and improve the user experience of everyday web browsing.
 
@@ -71,15 +71,22 @@ Step 2: Download and Install Docker
 A. Linux (Ubuntu / Debian-based example)
 
 1. Remove any old Docker versions if present:
+```
 sudo apt remove docker docker-engine docker.io containerd runc
+```
 
 2. Update your packages:
+```
 sudo apt update
+```
 
 3. Install prerequisite packages:
+```
 sudo apt install ca-certificates curl gnupg
+```
 
 4. Add Docker GPG key and repository:
+```
 sudo install -m 0755 -d /etc/apt/keyrings  
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg  
 echo \
@@ -88,20 +95,29 @@ echo \
   https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
 
 5. Install Docker Engine, CLI, and supporting tools:
+```
 sudo apt update  
 sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin  
+```
 
 6. Start & enable Docker so it launches on boot:
+```
 sudo systemctl start docker  
 sudo systemctl enable docker  
+```
 
 7. (Optional) Allow your user to run Docker without sudo:
+```
 sudo usermod -aG docker $USER  
+```
 
 8. Verify installation:
+```
 docker run hello-world  
+```
 
 If you see the "Hello from Docker!"" message, it is working.
 
@@ -117,11 +133,15 @@ Use Docker Desktop for Windows.
 4. After installation, launch Docker Desktop.
 
 5. Verify from PowerShell or Command Prompt:
+```
 docker --version  
 docker compose version  
+```
 
 6. To test:
+```
 docker run hello-world  
+```
 
 C. macOS
 Use Docker Desktop for macOS.
@@ -132,11 +152,15 @@ Use Docker Desktop for macOS.
 3. Launch Docker from Applications.
 
 4. Verify:
+```
 docker --version  
 docker compose version  
+```
 
 5. Test:
+```
 docker run hello-world  
+```
 
 Step 3: Download and Build the ReporTor local test server
 1. Download the ReporTor from https://github.com/sameer-patil/reportor  
@@ -144,15 +168,19 @@ Step 3: Download and Build the ReporTor local test server
 3. Open a new terminal window and locate the just extracted folder.
 4. If you're using Docker Desktop, make sure it's running.
 5. Run the following command to build and run the container:
+```
 sudo docker-compose up --build
+```
 6. Wait for all services to launch.
 
 Step 4: Setup Onion Address
 1. Open a new terminal window and locate the extracted directory of the ReporTor local test server.
 2. Run the following commands to automatically configure the plugin with the newly created onion address:
+```
 sudo chmod +x update_plugin.py
 sudo python update_plugin.py
 sudo chmod -R 777 reportor/
+```
 
 Step 5: Install the ReporTor Plugin
 1. Open Tor Browser if not already running.
@@ -218,21 +246,26 @@ Test 2
 4. Open new terminal window.
 5. Run one of the following commands options:
 Option 1
+```
 sudo docker exec -it reportor_mongo mongosh
 use broken_sites
 show collections
 db.reports.find().pretty()
+```
 
 Option 2
+```
 docker exec -it reportor_mongo mongosh --eval "use('broken_sites'); printjson(db.reports.find().toArray())"
+```
 
 Option 3    
+```
 docker exec -it reportor_mongo mongosh
 and then one-by-one type
 use broken_sites
 show collections
 db.reports.find().pretty()
-
+```
 
 Expected Output:
 You should see a json object of the report that you just submitted.
@@ -262,17 +295,21 @@ Step 1: Test Working Websites
 2. The window will display the Connect to Tor page. Click Connect and wait for the browser to establish a connection to the Tor network.
 3. Click the + button next to "New Tab" in the top-left corner of the window to open a new tab.
 4. Navigate to each of the following websites that work normally:
+```
 https://cnn.com
 https://doodle.com
+```
 
 - For doodle.com, you may need to complete a CAPTCHA.
 - Verify that both sites load and function correctly in Tor Browser.
 
 Step 2: Test Problematic Websites and Submit Reports.
 Perform these steps for each of the following websites that should exhibit issues:
+```
 https://airbnb.com
 https://sciencedirect.com
 https://walmart.com
+```
 
 1. Navigate to the website (You should encounter an error message, access denial, or functionality issues.)
 - If a website takes a long time to load, wait for Tor Browser timeout error message before proceeding to the next step.
@@ -302,20 +339,26 @@ https://walmart.com
 7. Open new terminal window.
 5. Run one of the following commands options:
 Option 1
+```
 sudo docker exec -it reportor_mongo mongosh
 use broken_sites
 show collections
 db.reports.find().pretty()
+```
 
 Option 2
+```
 docker exec -it reportor_mongo mongosh --eval "use('broken_sites'); printjson(db.reports.find().toArray())"
+```
 
 Option 3    
+```
 docker exec -it reportor_mongo mongosh
 and then one-by-one type
 use broken_sites
 show collections
 db.reports.find().pretty()
+```
 
 Expected Results:
 - CNN and Doodle should load successfully (possibly with CAPTCHAs for Doodle).
