@@ -1,0 +1,60 @@
+services:
+  flask:
+    build: .
+    container_name: reportor_flask
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+    networks:
+      - internal
+    environment:
+      - MONGO_URI=mongodb://datareciever:YOUR_SECURE_PASSWORD@mongo:27017/broken_sites
+
+  mongo:
+    image: mongo:6.0
+    container_name: reportor_mongo
+    volumes:
+      - mongo_data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - internal
+
+  tor:
+    image: dperson/torproxy
+    container_name: reportor_tor
+    networks:
+      - internal
+    volumes:
+      - ./tor/torrc:/etc/tor/torrc
+      - tor_data:/var/lib/tor
+      - ./:/shared
+    entrypoint: >
+      sh -c "
+        tor -f /etc/tor/torrc &
+        echo 'Waiting for onion address...';
+        for i in $(seq 1 60); do
+          if [ -f /var/lib/tor/reportor_service/hostname ]; then
+            echo '---------------------------------------------';
+            echo '  Onion service is ready!';
+            echo '  Address: ' $(cat /var/lib/tor/reportor_service/hostname);
+            echo '---------------------------------------------';
+            cat /var/lib/tor/reportor_service/hostname | tee /shared/onion_address.txt;
+            break;
+          fi;
+          sleep 2;
+        done;
+        echo 'Keeping Tor container alive...';
+        tail -f /dev/null
+      "
+
+volumes:
+  mongo_data:
+  tor_data:
+
+networks:
+  internal:
+    driver: bridge
+
+
+

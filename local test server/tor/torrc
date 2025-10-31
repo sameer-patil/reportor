@@ -1,0 +1,5 @@
+# Directory for hidden service keys
+HiddenServiceDir /var/lib/tor/reportor_service/
+HiddenServicePort 80 flask:5000
+Log notice stdout
+
