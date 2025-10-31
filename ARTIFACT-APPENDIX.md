@@ -58,7 +58,9 @@ The complete evaluation process requires approximately 1.5 hours, which includes
 Installation Instructions
 Step 1: Download and Install Tor Browser
 1. Download the latest version of Tor Browser for your operating system:
-- https://www.torproject.org/download/
+```
+https://www.torproject.org/download/
+```
 
 2. Install Tor Browser:
 - Windows: Run the installer (.exe file) and follow the prompts.
@@ -209,7 +211,9 @@ Step 5: Install the ReporTor Plugin
 ### Accessibility (Required for all badges)
 
 Download ReporTor Plugin using the following github repository:
+```
 https://github.com/sameer-patil/reportor.git
+```
 
 ### Set up the environment (Required for Functional and Reproduced badges)
 
@@ -245,6 +249,7 @@ Test 2
 3. Submit Report.
 4. Open new terminal window.
 5. Run one of the following commands options:
+
 Option 1
 ```
 sudo docker exec -it reportor_mongo mongosh
@@ -338,6 +343,7 @@ https://walmart.com
 
 7. Open new terminal window.
 5. Run one of the following commands options:
+
 Option 1
 ```
 sudo docker exec -it reportor_mongo mongosh
